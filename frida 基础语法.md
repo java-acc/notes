@@ -36,10 +36,14 @@ Java.perform(function () {
 
 	var clazzA = Java.use("com.xxx.Test");
 	
-	// 构造函数 
+	// 构造函数 有参构造
 	A.$init.overload('java.lang.String').implementation = function (s) {
 	    console.log("init:", s);
 	    return this.$init(s);
+	};
+	// 构造函数 无参构造
+	A.$init.overload().implementation = function () {
+	    return this.$init();
 	};
 	// 普通方法
 	clazzA.test.implementation = function (a, b) {
