@@ -32,5 +32,24 @@ Java.perform(function () {
 	    },
 	    onComplete: function () {}
 	});
+	
+
+	var clazzA = Java.use("com.xxx.Test");
+	
+	// 构造函数 
+	A.$init.overload('java.lang.String').implementation = function (s) {
+	    console.log("init:", s);
+	    return this.$init(s);
+	};
+	// 普通方法
+	clazzA.test.implementation = function (a, b) {
+	    console.log(a, b);
+	    return this.test(a, b);
+	};
+	
+	// hook 重载方法
+	A.test.overload('int', 'java.lang.String').implementation = function (i, s) {
+	    return 0;
+	};
 }
 ```
