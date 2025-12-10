@@ -19,16 +19,18 @@ setTimeout(function () {
 
 ##### Hook Java层
 ``` javascript
-Java.enumerateClassLoaders({
-    onMatch: function (loader) {
-        try {
-            if (loader.findClass("com.xxx.ClassName")) {
-	            // 切换为对应的ClassLoader 应对split dex / 动态 dex
-                Java.classFactory.loader = loader;
-                console.log("loader found");
-            }
-        } catch (e) {}
-    },
-    onComplete: function () {}
-});
+Java.perform(function () {
+	Java.enumerateClassLoaders({
+	    onMatch: function (loader) {
+	        try {
+	            if (loader.findClass("com.xxx.ClassName")) {
+		            // 切换为对应的ClassLoader 应对split dex / 动态 dex
+	                Java.classFactory.loader = loader;
+	                console.log("loader found");
+	            }
+	        } catch (e) {}
+	    },
+	    onComplete: function () {}
+	});
+}
 ```
