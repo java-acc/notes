@@ -50,8 +50,7 @@ Java.perform(function () {
 	    console.log(a, b);
 	    return this.test(a, b);
 	};
-	
-	// hook 重载方法
+	// 重载方法
 	A.test.overload('int', 'java.lang.String').implementation = function (i, s) {
 	    return 0;
 	};
